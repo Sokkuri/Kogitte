@@ -1,0 +1,16 @@
+image: "node:lts-stretch"
+
+before_script:
+    - npm install
+
+stages:
+    - build
+
+build:
+    stage: build
+    script:
+        - npm run build
+
+cache:
+    paths:
+        - node_modules/

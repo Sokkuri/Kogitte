@@ -1,0 +1,24 @@
+{
+    "name": "kogitte",
+    "description": "OAuth2 authentication provider for JS",
+    "version": "1.0.0",
+    "license": "MPL-2.0",
+    "main": "dist/index.js",
+    "module": "dist/index.module.js",
+    "source": "src/index.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://gitlab.com/sokkuri/kogitte"
+    },
+    "scripts": {
+        "build": "microbundle"
+    },
+    "dependencies": {
+        "axios": "^0.19.2",
+        "date-fns": "^2.14.0"
+    },
+    "devDependencies": {
+        "typescript": "^3.9.5",
+        "microbundle": "^0.12.2"
+    }
+}
