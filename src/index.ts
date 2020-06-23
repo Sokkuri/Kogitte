@@ -4,3 +4,5 @@
 
 export { default as UserSessionManager } from "./UserSessionManager";
 export { default as AuthStore } from "./AuthStore";
+export { default as AuthData } from "./models/AuthData";
+export { default as SignInData } from "./models/SignInData";
