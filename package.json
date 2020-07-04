@@ -21,7 +21,7 @@
         "date-fns": "^2.14.0"
     },
     "devDependencies": {
-        "typescript": "^3.9.5",
+        "typescript": "^3.9.6",
         "microbundle": "^0.12.2"
     }
 }
