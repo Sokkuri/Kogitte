@@ -61,6 +61,7 @@ export default class UserSessionManager {
                     return null;
                 }
 
+                UserSession.setSession(sessionRefreshResult.data);
                 AuthStore.setRunningRefreshPromise(null);
                 return sessionRefreshResult.data;
             }
