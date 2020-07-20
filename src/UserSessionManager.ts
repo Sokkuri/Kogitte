@@ -11,7 +11,7 @@ import SignInData from "./models/SignInData";
 import AuthStore from "./AuthStore";
 
 export default class UserSessionManager {
-    public login(username: string, password: string) {
+    public async login(username: string, password: string): Promise<AuthResult> {
         const dataContext = new AuthenticationDataContext();
         const signInData: SignInData = {
             grant_type: "password",
@@ -21,11 +21,13 @@ export default class UserSessionManager {
             client_id: AuthStore.getClientId()
         }
 
-        dataContext.login(signInData).then((result: AuthResult) => {
-            if (result.successfully && result.data) {
-                UserSession.setSession(result.data);
-            }
-        });
+        const loginResult = await dataContext.login(signInData);
+
+        if (loginResult.successfully && loginResult.data) {
+            UserSession.setSession(loginResult.data);
+        }
+
+        return loginResult;
     }
 
     public async logout(): Promise<AuthResult> {
