@@ -24,7 +24,6 @@ export default class AuthenticationDataContext {
         return instance.post(AuthStore.getLoginUrl(), params).then((x: AxiosResponse) => {
             return new AuthResult({ successfully: true, statusCode: x.status, data: x.data });
         }).catch((error: AxiosError) => {
-            console.log(error);
             return new AuthResult({ successfully: false, statusCode: error.response ? error.response.status : undefined });
         });
     }
@@ -43,7 +42,6 @@ export default class AuthenticationDataContext {
         return instance.post(AuthStore.getLoginUrl(), params).then((x: AxiosResponse) => {
             return new AuthResult({ successfully: true, statusCode: x.status, data: x.data });
         }).catch((error: AxiosError) => {
-            console.log(error);
             return new AuthResult({ successfully: false, statusCode: error.response ? error.response.status : undefined })
         });
     }
