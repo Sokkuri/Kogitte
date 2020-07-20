@@ -6,6 +6,7 @@ import AuthResult from "./models/AuthResult";
 import SignInData from "./models/SignInData";
 import AuthStore from "./AuthStore";
 import Axios, { AxiosError, AxiosResponse } from "axios";
+import AuthData from "./models/AuthData";
 
 export default class AuthenticationDataContext {
     public async login(data: SignInData): Promise<AuthResult> {
@@ -47,9 +48,17 @@ export default class AuthenticationDataContext {
         });
     }
 
-    public async logout(): Promise<void> {
-        return Axios.post(AuthStore.getLogoutUrl(), null).then(x => {
-            return x.data;
-        });
+    public async logout(session: AuthData): Promise<AuthResult> {
+        const instance = Axios.create();
+
+        if (session) {
+            instance.defaults.headers.common["Authorization"] = (`Bearer ${session.access_token}`);
+        }
+
+        return instance.post(AuthStore.getLogoutUrl(), null).then(x => {
+            return new AuthResult({ successfully: true, statusCode: x.status });
+        }).catch((error: AxiosError) => {
+            return new AuthResult({ successfully: false, statusCode: error.response ? error.response.status : undefined });
+        })
     }
 }

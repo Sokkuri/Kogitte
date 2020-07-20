@@ -28,12 +28,17 @@ export default class UserSessionManager {
         });
     }
 
-    public logout() {
+    public async logout(): Promise<AuthResult> {
         const dataContext = new AuthenticationDataContext();
+        const session = await this.getCurrentSession();
 
-        dataContext.logout().then(() => {
+        const logoutResult = await dataContext.logout(session);
+
+        if (logoutResult.successfully) {
             UserSession.removeSavedSession();
-        });
+        }
+
+        return logoutResult;
     }
 
     public async getCurrentSession(): Promise<AuthData | null> {
