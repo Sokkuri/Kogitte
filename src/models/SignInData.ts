@@ -8,4 +8,5 @@ export default class SignInData {
     password?: string;
     refresh_token?: string;
     client_id: string;
+    captcha?: string;
 }
