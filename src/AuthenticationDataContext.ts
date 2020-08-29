@@ -21,6 +21,10 @@ export default class AuthenticationDataContext {
             params.set("password", data.password);
         }
 
+        if (data.captcha) {
+            params.set("captcha", data.captcha);
+        }
+
         return instance.post(AuthStore.getLoginUrl(), params).then((x: AxiosResponse) => {
             return new AuthResult({ successfully: true, statusCode: x.status, data: x.data });
         }).catch((error: AxiosError) => {
