@@ -1,16 +1,16 @@
-image: "node:lts-stretch"
-
-before_script:
-    - npm install
+include:
+    - "https://gitlab.com/sokkuri/CI/-/raw/master/.gitlab/ci/linter.gitlab-ci.yml"
 
 stages:
+    - test
     - build
 
 build:
     stage: build
+    image: "node:lts-stretch"
     script:
+        - npm install
         - npm run build
-
-cache:
-    paths:
-        - node_modules/
+    cache:
+        paths:
+            - node_modules/
