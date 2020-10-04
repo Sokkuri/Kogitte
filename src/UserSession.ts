@@ -3,12 +3,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import AuthData from "./models/AuthData";
+import AuthConfig from "./AuthConfig";
 
 export default class UserSession {
     public static RefreshInProgress: boolean = false;
 
     public static getSavedSession(): AuthData | null {
-        const json = localStorage.getItem("Session");
+        const json = localStorage.getItem(AuthConfig.localStorageKey);
 
         if (json) {
             return JSON.parse(json) as AuthData;
@@ -19,10 +20,10 @@ export default class UserSession {
 
     public static setSession(authData: AuthData) {
         authData.issueDate = new Date().toISOString();
-        localStorage.setItem("Session", JSON.stringify(authData));
+        localStorage.setItem(AuthConfig.localStorageKey, JSON.stringify(authData));
     }
 
     public static removeSavedSession() {
-        localStorage.removeItem("Session");
+        localStorage.removeItem(AuthConfig.localStorageKey);
     }
 }

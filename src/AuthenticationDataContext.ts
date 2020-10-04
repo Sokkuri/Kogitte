@@ -4,7 +4,7 @@
 
 import AuthResult from "./models/AuthResult";
 import SignInData from "./models/SignInData";
-import AuthStore from "./AuthStore";
+import AuthConfig from "./AuthConfig";
 import Axios, { AxiosError, AxiosResponse } from "axios";
 import AuthData from "./models/AuthData";
 
@@ -25,10 +25,18 @@ export default class AuthenticationDataContext {
             params.set("captcha", data.captcha);
         }
 
-        return instance.post(AuthStore.getLoginUrl(), params).then((x: AxiosResponse) => {
-            return new AuthResult({ successfully: true, statusCode: x.status, data: x.data });
+        return instance.post(AuthConfig.tokenUrl, params).then((x: AxiosResponse) => {
+            return new AuthResult({
+                successfully: true,
+                statusCode: x.status,
+                data: x.data
+            });
         }).catch((error: AxiosError) => {
-            return new AuthResult({ successfully: false, statusCode: error.response ? error.response.status : undefined });
+            return new AuthResult({
+                successfully: false,
+                statusCode: error.response.status,
+                error: error.response.data
+            });
         });
     }
 
@@ -43,10 +51,18 @@ export default class AuthenticationDataContext {
             params.set("refresh_token", data.refresh_token);
         }
 
-        return instance.post(AuthStore.getLoginUrl(), params).then((x: AxiosResponse) => {
-            return new AuthResult({ successfully: true, statusCode: x.status, data: x.data });
+        return instance.post(AuthConfig.tokenUrl, params).then((x: AxiosResponse) => {
+            return new AuthResult({
+                successfully: true,
+                statusCode: x.status,
+                data: x.data
+            });
         }).catch((error: AxiosError) => {
-            return new AuthResult({ successfully: false, statusCode: error.response ? error.response.status : undefined })
+            return new AuthResult({
+                successfully: false,
+                statusCode: error.response.status,
+                error: error.response.data
+            });
         });
     }
 
@@ -57,10 +73,18 @@ export default class AuthenticationDataContext {
             instance.defaults.headers.common["Authorization"] = (`Bearer ${session.access_token}`);
         }
 
-        return instance.post(AuthStore.getLogoutUrl(), null).then(x => {
-            return new AuthResult({ successfully: true, statusCode: x.status });
+        return instance.post(AuthConfig.logoutUrl, null).then(x => {
+            return new AuthResult({
+                successfully: true,
+                statusCode:
+                x.status
+            });
         }).catch((error: AxiosError) => {
-            return new AuthResult({ successfully: false, statusCode: error.response ? error.response.status : undefined });
+            return new AuthResult({
+                successfully: false,
+                statusCode: error.response.status,
+                error: error.response.data
+            });
         })
     }
 }
