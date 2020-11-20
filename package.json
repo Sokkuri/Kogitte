@@ -11,7 +11,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://gitlab.com/sokkuri/kogitte"
+        "url": "https://github.com/Sokkuri/Kogitte"
     },
     "scripts": {
         "build": "microbundle"
