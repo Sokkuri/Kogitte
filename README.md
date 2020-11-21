@@ -55,7 +55,8 @@ new UserSessionManager().logout();
 
 **Get current session:**
 
-Gets the data from the local storage and checks if the access token is still valid. Is this not the case, a refresh attempt is made. If this fails the saved session gets removed. Is the token still valid or the refreshment succeeded, the current session gets returned.
+Gets the data from the local storage and checks if the access token is still valid. Is this not the case, a refresh attempt is made.
+If this fails the saved session gets removed. Is the token still valid or the refreshment succeeded, the current session gets returned.
 ```ts
 import { UserSessionManager } from "kogitte";
 

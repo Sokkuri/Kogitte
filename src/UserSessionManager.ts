@@ -22,7 +22,7 @@ export default class UserSessionManager {
             refresh_token: undefined,
             client_id: AuthConfig.clientId,
             captcha: captcha
-        }
+        };
 
         const loginResult = await dataContext.login(signInData);
 
@@ -101,7 +101,7 @@ export default class UserSessionManager {
             password: undefined,
             refresh_token: session.refresh_token,
             client_id: AuthConfig.clientId
-        }
+        };
 
         return dataContext.refresh(signInData).then((x: AuthResult) => {
             return x;

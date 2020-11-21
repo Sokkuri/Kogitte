@@ -85,6 +85,6 @@ export default class AuthenticationDataContext {
                 statusCode: error.response.status,
                 error: error.response.data
             });
-        })
+        });
     }
 }
