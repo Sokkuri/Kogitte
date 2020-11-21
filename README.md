@@ -1,5 +1,5 @@
 # Kogitte
-[![ci](https://gitlab.com/sokkuri/kogitte/badges/master/pipeline.svg?style=flat)](https://www.npmjs.com/package/keiryo)
+[![ci](https://gitlab.com/sokkuri/kogitte/badges/master/pipeline.svg?style=flat)](https://gitlab.com/sokkuri/Kogitte/-/commits/master)
 [![npm](https://img.shields.io/npm/v/keiryo.svg)](https://www.npmjs.com/package/keiryo)
 
 OAuth2 session manager
