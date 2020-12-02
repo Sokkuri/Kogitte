@@ -1,0 +1,34 @@
+{
+    "MPL Header": {
+        "scope": "javascript,typescript,css,scss",
+        "prefix": [
+            "header",
+            "copyright",
+            "mpl"
+        ],
+        "body": [
+            "/* This Source Code Form is subject to the terms of the Mozilla Public",
+            " * License, v. 2.0. If a copy of the MPL was not distributed with this",
+            " * file, You can obtain one at https://mozilla.org/MPL/2.0/. */",
+            "",
+            "$0"
+        ],
+        "description": "Insert MPL Header"
+    },
+    "MPL Header HTML": {
+        "scope": "vue",
+        "prefix": [
+            "header",
+            "copyright",
+            "mpl"
+        ],
+        "body": [
+            "<!-- This Source Code Form is subject to the terms of the Mozilla Public",
+            "   - License, v. 2.0. If a copy of the MPL was not distributed with this",
+            "   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->",
+            "",
+            "$0"
+        ],
+        "description": "Insert MPL Header"
+    }
+}
