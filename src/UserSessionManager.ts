@@ -2,14 +2,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import UserSession from "./UserSession";
-import { addSeconds, isAfter, parseISO } from "date-fns";
+import AuthConfig from "./AuthConfig";
 import AuthenticationDataContext from "./AuthenticationDataContext";
 import AuthData from "./models/AuthData";
 import AuthResult from "./models/AuthResult";
 import SignInData from "./models/SignInData";
 import Storage from "./Storage";
-import AuthConfig from "./AuthConfig";
+import UserSession from "./UserSession";
 import StringUtils from "./utilities/StringUtils";
 
 export default class UserSessionManager {
@@ -110,12 +109,12 @@ export default class UserSessionManager {
 
     private validateAccessToken(authData: AuthData): boolean {
         if (authData.issueDate) {
-            const issueDate = parseISO(authData.issueDate);
-            const expirationDate = addSeconds(issueDate, authData.expires_in);
+            const issueDate = new Date(authData.issueDate);
 
-            if (isAfter(expirationDate, new Date())) {
-                return true;
-            }
+            const expirationDate = new Date(issueDate);
+            expirationDate.setSeconds(issueDate.getSeconds() + authData.expires_in);
+
+            return expirationDate >= new Date();
         }
 
         return false;
