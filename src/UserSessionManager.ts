@@ -19,7 +19,7 @@ export default class UserSessionManager {
             username: username,
             password: password,
             refresh_token: undefined,
-            client_id: AuthConfig.clientId,
+            client_id: AuthConfig.config.clientId,
             captcha: captcha
         };
 
@@ -70,6 +70,7 @@ export default class UserSessionManager {
                         // https://tools.ietf.org/html/rfc6749#section-5.2
 
                         UserSession.removeSavedSession();
+                        AuthConfig.config.onSessionExpire?.();
                     }
 
                     // Keep session if service is probably unreachable.
@@ -99,7 +100,7 @@ export default class UserSessionManager {
             username: undefined,
             password: undefined,
             refresh_token: session.refresh_token,
-            client_id: AuthConfig.clientId
+            client_id: AuthConfig.config.clientId
         };
 
         return dataContext.refresh(signInData).then((x: AuthResult) => {

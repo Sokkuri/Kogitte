@@ -22,12 +22,16 @@ npm run build
 ```ts
 import { AuthConfig } from "kogitte";
 
-AuthConfig.init("clientId", "tokenUrl", "logoutUrl");
-```
-Optionally the name for the local storage key can be specified, like this:
+AuthConfig.init({
+    // Required
+    clientId: "clientId",
+    tokenUrl: "tokenUrl",
+    logoutUrl: "logoutUrl",
 
-```ts
-AuthConfig.init("clientId", "tokenUrl", "logoutUrl", "localStorageKey");
+    // Optional
+    localStorageKey: "localStorageKey",
+    onSessionExpire: () => { ... }
+});
 ```
 
 ### Session Manager

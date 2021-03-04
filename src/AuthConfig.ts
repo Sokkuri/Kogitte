@@ -2,32 +2,20 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+import Configuration from "./models/Configuration";
+
 export default class AuthConfig {
-    private static _clientId: string;
-    private static _tokenUrl: string;
-    private static _logoutUrl: string;
-    private static _localStorageKey: string;
+    private static _config: Configuration;
 
-    public static init(clientId: string, tokenUrl: string, logoutUrl: string, localStorageKey = "Session") {
-        this._clientId = clientId;
-        this._tokenUrl = tokenUrl;
-        this._logoutUrl = logoutUrl;
-        this._localStorageKey = localStorageKey;
+    public static init(config: Configuration) {
+        this._config = config;
+
+        if (!this._config.localStorageKey) {
+            this._config.localStorageKey = "Session";
+        }
     }
 
-    static get clientId() {
-        return this._clientId;
-    }
-
-    static get tokenUrl() {
-        return this._tokenUrl;
-    }
-
-    static get logoutUrl() {
-        return this._logoutUrl;
-    }
-
-    static get localStorageKey() {
-        return this._localStorageKey;
+    static get config() {
+        return this._config;
     }
 }

@@ -9,7 +9,7 @@ export default class UserSession {
     public static RefreshInProgress: boolean = false;
 
     public static getSavedSession(): AuthData | null {
-        const json = localStorage.getItem(AuthConfig.localStorageKey);
+        const json = localStorage.getItem(AuthConfig.config.localStorageKey);
 
         if (json) {
             return JSON.parse(json) as AuthData;
@@ -20,10 +20,10 @@ export default class UserSession {
 
     public static setSession(authData: AuthData) {
         authData.issueDate = new Date().toString();
-        localStorage.setItem(AuthConfig.localStorageKey, JSON.stringify(authData));
+        localStorage.setItem(AuthConfig.config.localStorageKey, JSON.stringify(authData));
     }
 
     public static removeSavedSession() {
-        localStorage.removeItem(AuthConfig.localStorageKey);
+        localStorage.removeItem(AuthConfig.config.localStorageKey);
     }
 }

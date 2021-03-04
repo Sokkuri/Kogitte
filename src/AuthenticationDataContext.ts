@@ -2,11 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+import Axios, { AxiosError, AxiosResponse } from "axios";
+import AuthConfig from "./AuthConfig";
+import AuthData from "./models/AuthData";
 import AuthResult from "./models/AuthResult";
 import SignInData from "./models/SignInData";
-import AuthConfig from "./AuthConfig";
-import Axios, { AxiosError, AxiosResponse } from "axios";
-import AuthData from "./models/AuthData";
 
 export default class AuthenticationDataContext {
     public async login(data: SignInData): Promise<AuthResult> {
@@ -25,7 +25,7 @@ export default class AuthenticationDataContext {
             params.set("captcha", data.captcha);
         }
 
-        return instance.post(AuthConfig.tokenUrl, params).then((x: AxiosResponse) => {
+        return instance.post(AuthConfig.config.tokenUrl, params).then((x: AxiosResponse) => {
             return new AuthResult({
                 successfully: true,
                 statusCode: x.status,
@@ -51,7 +51,7 @@ export default class AuthenticationDataContext {
             params.set("refresh_token", data.refresh_token);
         }
 
-        return instance.post(AuthConfig.tokenUrl, params).then((x: AxiosResponse) => {
+        return instance.post(AuthConfig.config.tokenUrl, params).then((x: AxiosResponse) => {
             return new AuthResult({
                 successfully: true,
                 statusCode: x.status,
@@ -73,7 +73,7 @@ export default class AuthenticationDataContext {
             instance.defaults.headers.common["Authorization"] = (`Bearer ${session.access_token}`);
         }
 
-        return instance.post(AuthConfig.logoutUrl, null).then(x => {
+        return instance.post(AuthConfig.config.logoutUrl, null).then(x => {
             return new AuthResult({
                 successfully: true,
                 statusCode:
