@@ -1,5 +1,5 @@
 # Kogitte
-[![ci](https://gitlab.com/sokkuri/kogitte/badges/master/pipeline.svg?style=flat)](https://gitlab.com/sokkuri/Kogitte/-/commits/master)
+[![ci](https://github.com/Sokkuri/Kogitte/workflows/CI/badge.svg)](https://github.com/Sokkuri/Kogitte/commits/master)
 [![npm](https://img.shields.io/npm/v/kogitte.svg)](https://www.npmjs.com/package/kogitte)
 
 OAuth2 session manager
