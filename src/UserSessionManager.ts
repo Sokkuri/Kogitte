@@ -32,11 +32,11 @@ export default class UserSessionManager {
         return loginResult;
     }
 
-    public async logout(): Promise<AuthResult> {
+    public async logout(data: unknown = null): Promise<AuthResult> {
         const dataContext = new AuthenticationDataContext();
         const session = await this.getCurrentSession();
 
-        const logoutResult = await dataContext.logout(session);
+        const logoutResult = await dataContext.logout(session, data);
 
         if (logoutResult.successfully) {
             UserSession.removeSavedSession();

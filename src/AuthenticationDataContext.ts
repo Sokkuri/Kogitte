@@ -66,14 +66,14 @@ export default class AuthenticationDataContext {
         });
     }
 
-    public async logout(session: AuthData): Promise<AuthResult> {
+    public async logout(session: AuthData, data: unknown): Promise<AuthResult> {
         const instance = Axios.create();
 
         if (session) {
             instance.defaults.headers.common["Authorization"] = (`Bearer ${session.access_token}`);
         }
 
-        return instance.post(AuthConfig.config.logoutUrl, null).then(x => {
+        return instance.post(AuthConfig.config.logoutUrl, data).then(x => {
             return new AuthResult({
                 successfully: true,
                 statusCode:

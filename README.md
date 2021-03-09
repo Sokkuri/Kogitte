@@ -56,8 +56,9 @@ Sends an authorized POST request to the configured URL and removes afterwards th
 ```ts
 import { UserSessionManager } from "kogitte";
 
-new UserSessionManager().logout();
+new UserSessionManager().logout("optional data");
 ```
+Optionally data can be provided. This data is sent in the request body.
 
 **Get current session:**
 
