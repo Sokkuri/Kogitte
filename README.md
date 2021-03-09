@@ -41,14 +41,9 @@ Requests the access and the refresh token from the configured token URL and save
 ```ts
 import { UserSessionManager } from "kogitte";
 
-new UserSessionManager().login("username", "password");
+new UserSessionManager().login("username", "password", "optional captcha response");
 ```
-Optionally a captcha response can be provided as follows:
-
-```ts
-new UserSessionManager().login("username", "password", "captchaResponse");
-```
-This data is sent with the login in the `captcha` parameter.
+Optionally a captcha response can be provided. This data is sent with the login in the `captcha` parameter.
 
 **Logout:**
 
