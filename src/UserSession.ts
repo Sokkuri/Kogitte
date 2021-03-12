@@ -9,10 +9,12 @@ export default class UserSession {
     public static RefreshInProgress: boolean = false;
 
     public static getSavedSession(): AuthData | null {
-        const json = localStorage.getItem(AuthConfig.config.localStorageKey);
+        if (AuthConfig.config?.localStorageKey) {
+            const json = localStorage.getItem(AuthConfig.config.localStorageKey);
 
-        if (json) {
-            return JSON.parse(json) as AuthData;
+            if (json) {
+                return JSON.parse(json) as AuthData;
+            }
         }
 
         return null;
