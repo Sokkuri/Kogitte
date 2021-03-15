@@ -112,8 +112,8 @@ export default class UserSessionManager {
         if (authData.issueDate) {
             const issueDate = new Date(authData.issueDate);
 
-            const expirationDate = new Date(issueDate);
-            expirationDate.setSeconds(issueDate.getSeconds() + authData.expires_in);
+            // In some cases the calculation of add seconds is wrong. To be sure that it's right, do it manually.
+            const expirationDate = new Date(issueDate.getTime() + (authData.expires_in * 1000));
 
             return expirationDate >= new Date();
         }
