@@ -17,7 +17,7 @@
         "build": "microbundle"
     },
     "dependencies": {
-        "axios": "^0.21.0"
+        "axios": "^0.22.0"
     },
     "devDependencies": {
         "@sokkuri/eslint-config": "^2.1.2",
