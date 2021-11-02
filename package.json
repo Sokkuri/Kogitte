@@ -23,6 +23,6 @@
         "@sokkuri/eslint-config": "^2.1.2",
         "eslint": "^7.14.0",
         "typescript": "^4.0.3",
-        "microbundle": "^0.13.0"
+        "microbundle": "^0.14.1"
     }
 }
