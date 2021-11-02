@@ -11,14 +11,10 @@ export default class AuthResult {
     data?: AuthData;
     error: AuthError;
 
-    constructor(options: {
-        successfully: boolean,
-        statusCode?: number,
-        data?: AuthData,
-        error?: AuthError }) {
-            this.successfully = options.successfully;
-            this.data = options.data;
-            this.statusCode = options.statusCode;
-            this.error = options.error;
-        }
+    constructor(options: { successfully: boolean, statusCode?: number, data?: AuthData, error?: AuthError }) {
+        this.successfully = options.successfully;
+        this.data = options.data;
+        this.statusCode = options.statusCode;
+        this.error = options.error;
+    }
 }
